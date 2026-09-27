@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FirstHour — repository onboarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/platform.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">FirstHour</a>
+    <p class="tag">Onboard onto a repository you have never seen.</p>
+    <div class="top-actions">
+      <label class="theme">
+        <span>Theme</span>
+        <select id="theme">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <div id="account"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">Developer onboarding</p>
+      <h1>From an unfamiliar repo to a first safe change.</h1>
+      <p class="lede">FirstHour reads a real GitHub repository, then three agents work in parallel: one maps the architecture, one checks setup, and one writes starter tasks.</p>
+      <form id="form">
+        <label for="repo">GitHub repository</label>
+        <div class="row">
+          <input id="repo" name="repo" autocomplete="off" spellcheck="false" placeholder="owner/name or https://github.com/owner/name" />
+          <button id="go" type="submit">Onboard</button>
+        </div>
+        <p id="form-error" class="form-error" hidden></p>
+      </form>
+      <div class="chips">
+        <button type="button" data-repo="expressjs/express">expressjs/express</button>
+        <button type="button" data-repo="local/firsthour">This project</button>
+      </div>
+      <p id="llm-note" class="note"></p>
+    </section>
+
+    <section id="live" class="panel" hidden>
+      <div class="panel-head">
+        <h2>Live agents</h2>
+        <p id="live-status">Starting</p>
+      </div>
+      <ol id="timeline"></ol>
+    </section>
+
+    <section id="results" hidden>
+      <header class="result-head">
+        <div>
+          <p class="kicker" id="result-source"></p>
+          <h2 id="result-title"></h2>
+          <p id="result-summary"></p>
+        </div>
+        <a id="result-link" href="" target="_blank" rel="noreferrer">Open on GitHub</a>
+      </header>
+      <div class="grid">
+        <article>
+          <h3>Architecture</h3>
+          <div id="architecture"></div>
+        </article>
+        <article>
+          <h3>Setup</h3>
+          <div id="setup"></div>
+        </article>
+        <article>
+          <h3>Starter tasks</h3>
+          <div id="tasks"></div>
+        </article>
+      </div>
+      <article class="risks">
+        <h3>Watch for</h3>
+        <ul id="risks"></ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Recent onboardings</h2>
+      </div>
+      <div id="history"><p class="muted">None yet.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/harbor">Harbor Orders sample</a>
+    <span>The sample is the unfamiliar app. This page is the onboarding product.</span>
+  </footer>
+  <script src="/platform.js"></script>
+</body>
+</html>

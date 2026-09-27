@@ -1,0 +1,10 @@
+﻿node_modules/
+**/node_modules/
+.env
+data/
+data/*.db
+*.db
+uploads/
+dist/
+.next/
+bob_sessions/*.json

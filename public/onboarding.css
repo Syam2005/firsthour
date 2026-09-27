@@ -1,0 +1,407 @@
+/* ============================================================
+   FirstHour — Onboarding CSS
+   Light / dark / system theme via CSS custom properties.
+   ============================================================ */
+
+/* ---------- token layer (light defaults) ---------- */
+:root {
+  --bg:            #ffffff;
+  --bg-surface:    #f7f8fa;
+  --bg-card:       #ffffff;
+  --border:        #e5e7eb;
+  --text:          #1f2328;
+  --text-muted:    #57606a;
+  --accent:        #3b82d4;
+  --accent-hover:  #2563b5;
+  --success-bg:    #ecfdf5;
+  --success-text:  #166534;
+  --success-border:#bbf7d0;
+  --fail-bg:       #fef2f2;
+  --fail-text:     #991b1b;
+  --fail-border:   #fecaca;
+  --todo-bg:       #f7f8fa;
+  --todo-text:     #374151;
+  --doing-bg:      #eff6ff;
+  --doing-text:    #1e40af;
+  --done-bg:       #ecfdf5;
+  --done-text:     #166534;
+  --btn-bg:        #f3f4f6;
+  --btn-text:      #374151;
+  --btn-border:    #d1d5db;
+  --btn-hover-bg:  #e5e7eb;
+  --retry-bg:      #fffbeb;
+  --retry-border:  #fbbf24;
+  --retry-text:    #92400e;
+}
+
+/* ---------- explicit dark class ---------- */
+:root.dark {
+  --bg:            #0d1117;
+  --bg-surface:    #161b22;
+  --bg-card:       #21262d;
+  --border:        #30363d;
+  --text:          #e6edf3;
+  --text-muted:    #8b949e;
+  --accent:        #58a6ff;
+  --accent-hover:  #79b8ff;
+  --success-bg:    #0d1f12;
+  --success-text:  #3fb950;
+  --success-border:#1a3726;
+  --fail-bg:       #1f0d0d;
+  --fail-text:     #f85149;
+  --fail-border:   #3d1212;
+  --todo-bg:       #161b22;
+  --todo-text:     #c9d1d9;
+  --doing-bg:      #0d1926;
+  --doing-text:    #79b8ff;
+  --done-bg:       #0d1f12;
+  --done-text:     #3fb950;
+  --btn-bg:        #21262d;
+  --btn-text:      #c9d1d9;
+  --btn-border:    #30363d;
+  --btn-hover-bg:  #30363d;
+  --retry-bg:      #1c1700;
+  --retry-border:  #d29922;
+  --retry-text:    #e3b341;
+}
+
+/* ---------- system dark (no explicit class set) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    --bg:            #0d1117;
+    --bg-surface:    #161b22;
+    --bg-card:       #21262d;
+    --border:        #30363d;
+    --text:          #e6edf3;
+    --text-muted:    #8b949e;
+    --accent:        #58a6ff;
+    --accent-hover:  #79b8ff;
+    --success-bg:    #0d1f12;
+    --success-text:  #3fb950;
+    --success-border:#1a3726;
+    --fail-bg:       #1f0d0d;
+    --fail-text:     #f85149;
+    --fail-border:   #3d1212;
+    --todo-bg:       #161b22;
+    --todo-text:     #c9d1d9;
+    --doing-bg:      #0d1926;
+    --doing-text:    #79b8ff;
+    --done-bg:       #0d1f12;
+    --done-text:     #3fb950;
+    --btn-bg:        #21262d;
+    --btn-text:      #c9d1d9;
+    --btn-border:    #30363d;
+    --btn-hover-bg:  #30363d;
+    --retry-bg:      #1c1700;
+    --retry-border:  #d29922;
+    --retry-text:    #e3b341;
+  }
+}
+
+/* ============================================================
+   Base reset & typography
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; }
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+code {
+  font-family: ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+  font-size: 0.875em;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 0.875em;
+  font-family: ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.page-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* ============================================================
+   Top bar
+   ============================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.topbar-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.topbar-brand span { color: var(--accent); }
+
+.topbar-actions { display: flex; gap: 8px; }
+
+/* ============================================================
+   Section headings
+   ============================================================ */
+.section { margin-bottom: 48px; }
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.section-heading h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.section-num {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1px 8px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Overview section
+   ============================================================ */
+.overview-prose p { margin-bottom: 12px; color: var(--text); }
+.overview-prose p:last-child { margin-bottom: 0; }
+
+.arch-diagram {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+.arch-diagram pre {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.status-machine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.state-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 3px 10px;
+}
+.state-new    { background: var(--todo-bg);  color: var(--todo-text);  border: 1px solid var(--border); }
+.state-packed { background: var(--doing-bg); color: var(--doing-text); border: 1px solid var(--border); }
+.state-shipped{ background: var(--done-bg);  color: var(--done-text);  border: 1px solid var(--border); }
+.state-arrow  { color: var(--text-muted); font-size: 0.9rem; }
+
+/* ============================================================
+   Setup section
+   ============================================================ */
+.checks-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.checks-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.check-item.check-pass {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+}
+.check-item.check-fail {
+  background: var(--fail-bg);
+  border-color: var(--fail-border);
+}
+
+.check-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin-top: 1px;
+}
+.check-pass .check-icon { color: var(--success-text); }
+.check-fail .check-icon { color: var(--fail-text); }
+
+.check-body { flex: 1; }
+.check-label { font-weight: 500; font-size: 0.9rem; }
+.check-pass .check-label { color: var(--success-text); }
+.check-fail .check-label { color: var(--fail-text); }
+.check-detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 1px; }
+
+.loading-row {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Retry / error banner
+   ============================================================ */
+.retry-banner {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--retry-border);
+  background: var(--retry-bg);
+  color: var(--retry-text);
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+}
+.retry-banner.visible { display: flex; }
+.retry-banner-msg { flex: 1; }
+
+/* ============================================================
+   Tasks section
+   ============================================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.task-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  padding: 14px 16px;
+}
+.task-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.task-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  flex: 1;
+}
+.task-status-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+.badge-todo   { background: var(--todo-bg);  color: var(--todo-text);  border: 1px solid var(--border); }
+.badge-doing  { background: var(--doing-bg); color: var(--doing-text); border: 1px solid var(--border); }
+.badge-done   { background: var(--done-bg);  color: var(--done-text);  border: 1px solid var(--border); }
+
+.task-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.task-meta code { font-size: 0.78rem; }
+.task-proof {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-left: 3px solid var(--border);
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+.task-actions { display: flex; gap: 8px; }
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 500;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+.btn:hover { background: var(--btn-hover-bg); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+.empty-state {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  padding: 14px 0;
+}

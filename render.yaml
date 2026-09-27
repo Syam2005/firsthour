@@ -1,0 +1,55 @@
+# render.yaml — FirstHour deployment on Render
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: firsthour-backend
+    env: node
+    region: oregon
+    buildCommand: "cd backend && npm install"
+    startCommand: "cd backend && npm start"
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CALLBACK_URL
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: WATSONX_URL
+        sync: false
+      - key: WATSONX_PROJECT_ID
+        sync: false
+      - key: WATSONX_API_KEY
+        sync: false
+      - key: WATSONX_MODEL
+        value: ibm/granite-3-8b-instruct
+
+  - type: web
+    name: firsthour-frontend
+    env: node
+    region: oregon
+    buildCommand: "cd frontend && npm install && npm run build"
+    startCommand: "cd frontend && npm start"
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false
